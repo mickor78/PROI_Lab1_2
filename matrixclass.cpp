@@ -30,19 +30,8 @@ MatrixClass::MatrixClass(int numberOfDegree) {
     this->numberOfDegree = numberOfDegree;
     //call matrixGenerator()
     matrixGenerator();
-    //set range
-    int min=-10, max=10;
-    //float - put 'n'
-    char n = 'n';
-
-    srand(time(NULL));
-    for (int i = 0; i < numberOfDegree; ++i) {
-        for (int j = 0; j < numberOfDegree; ++j) {
-            if(n=='n')
-                matrix[i][j] = (double)(std::rand())/(double)(RAND_MAX)*(max-min)+min;
-            else matrix[i][j] = (std::rand() % (max-min))+min;
-        }
-    }
+    //call matrixRandomizer()
+    matrixRandomizer();
 }
 //One parameter constructor
 
@@ -63,6 +52,24 @@ void MatrixClass::matrixGenerator() {
     }
 }
 //Matrix initializator
+
+
+void MatrixClass::matrixRandomizer() {
+    //set range
+    int min=-10, max=10;
+    //float - put 'n'
+    char n = 'n';
+
+    srand(time(NULL));
+    for (int i = 0; i < this->numberOfDegree; ++i) {
+        for (int j = 0; j < this->numberOfDegree; ++j) {
+            if(n=='n')
+                this->matrix[i][j] = (double)(std::rand())/(double)(RAND_MAX)*(max-min)+min;
+            else this->matrix[i][j] = (std::rand() % (max-min))+min;
+        }
+    }
+}
+
 
 //Conut determinant
 //Recurennce
@@ -170,6 +177,7 @@ MatrixClass operator*(const MatrixClass &m, const MatrixClass &n) {
     return temp;
 }
 
+
 MatrixClass &operator+=(MatrixClass &m, const MatrixClass &n) {
     //MatrixClass temp(m.numberOfDegree);
     for (int i = 0; i < m.numberOfDegree; ++i) {
@@ -178,7 +186,7 @@ MatrixClass &operator+=(MatrixClass &m, const MatrixClass &n) {
         }
     }
     //std::cout<<"Wynik z operatora:\n\n" <<temp;
-    //return temp;
+    return m;
 }
 
 
@@ -190,7 +198,7 @@ MatrixClass &operator-=(MatrixClass &m, const MatrixClass &n) {
         }
     }
     //std::cout<<"Wynik z operatora:\n\n" <<temp;
-    //return temp;
+    return m;
 }
 
 MatrixClass &operator*=(MatrixClass &m, const MatrixClass &n) {
@@ -214,6 +222,7 @@ MatrixClass &operator*=(MatrixClass &m, const MatrixClass &n) {
         }
     }
     m += temp;
+    return m;
 }
 
 

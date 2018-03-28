@@ -22,6 +22,7 @@ public:
 
     double determinant(MatrixClass &m);
     void matrixGenerator();
+    void matrixRandomizer();
 
     friend std::ostream &operator<<(std::ostream &, MatrixClass &);
     friend MatrixClass operator+(const MatrixClass &m, const MatrixClass &n);
