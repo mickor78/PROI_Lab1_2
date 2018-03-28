@@ -10,10 +10,10 @@
 #include <ostream>
 
 class MatrixClass {
+public:
     int numberOfDegree;
     double **matrix;
 
-public:
     explicit MatrixClass(int numberOfDegree);
     MatrixClass(const MatrixClass &m);
     MatrixClass();
